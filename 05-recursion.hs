@@ -57,9 +57,13 @@ stepReverseSign num step
  - You may find the stepReverseSign function handy
  -}
 
-piCalc :: (Fractional a, Integral b, Ord a) => a -> (a, b)
-piCalc a = undefined
+-- piCalc :: (Fractional a, Integral b, Ord a) => a -> (a, b)
+-- piCalc tolerance
+--     | tolerance < 1  = (piCalc tolerance, step)
+--     | tolerance == 1 = (1,1)
+--     where pi = 
 
 piCalc' :: (Ord a, Fractional a, Integral b) => a -> a -> a -> b -> (a, b)
-piCalc' w x y z = undefined
-
+piCalc' w x y z
+    | 4 / w < y = (x, z)
+    | otherwise = piCalc' (w + 2) (stepReverseSign (4 / w) x) y (z + 1)
